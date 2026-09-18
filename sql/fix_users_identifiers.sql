@@ -1,0 +1,8 @@
+-- Missing CFX-CS identity / session columns on users
+ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `discord` VARCHAR(60) DEFAULT NULL;
+ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `identifiers` LONGTEXT DEFAULT '[]';
+ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `hwdid` LONGTEXT DEFAULT '[]';
+ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `DateCreated` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP();
+ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `LastConnected` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP();
+
+SHOW COLUMNS FROM `users` WHERE Field IN ('discord', 'identifiers', 'hwdid', 'DateCreated', 'LastConnected');

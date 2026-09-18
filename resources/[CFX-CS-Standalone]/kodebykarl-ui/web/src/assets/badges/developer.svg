@@ -1,0 +1,23 @@
+<svg width="256" height="256" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cyberCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a5f3fc" />
+      <stop offset="40%" stop-color="#00f0ff" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="cyberPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="50%" stop-color="#7e22ce" />
+      <stop offset="100%" stop-color="#3b0764" />
+    </linearGradient>
+  </defs>
+  <line x1="20" y1="50" x2="30" y2="50" stroke="#00f0ff" stroke-width="2" stroke-dasharray="2,2" />
+  <line x1="80" y1="50" x2="70" y2="50" stroke="#00f0ff" stroke-width="2" stroke-dasharray="2,2" />
+  <polygon points="50,15 82,32 82,68 50,85 18,68 18,32" fill="url(#cyberPurple)" stroke="url(#cyberCyan)" stroke-width="3.5" stroke-linejoin="round"/>
+  <polygon points="50,22 75,36 75,64 50,78 25,64 25,36" fill="#050a14" stroke="#00f0ff" stroke-width="1.2" opacity="0.9"/>
+  <path d="M 40 40 L 33 48 L 40 56" stroke="#00f0ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 60 40 L 67 48 L 60 56" stroke="#00f0ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="53" y1="38" x2="47" y2="58" stroke="#c084fc" stroke-width="2.5" stroke-linecap="round" />
+  <rect x="24" y="69" width="52" height="12" rx="3" fill="#030712" stroke="#00f0ff" stroke-width="1.2" />
+  <text x="50" y="78" fill="#00f0ff" font-size="6.5" font-family="sans-serif" font-weight="900" text-anchor="middle" letter-spacing="0.6">DEVELOPER</text>
+</svg>

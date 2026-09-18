@@ -1,0 +1,192 @@
+---@class Properties: table
+---@field plate? string
+---@field colour? integer|Rgb|string Legacy dealership colour override
+---@field fuelLevel? number
+---@alias ShowroomSession {dealership:string, originalBucket:integer, originalCoords:vector3}
+---@alias Vehicle {vehicleLabel?: string,brand: string,model: string,plate: string,price: number,list_price?: number,spawn_code: string,stock: number,category: string,locations?: {id:string,name:string}[],created_at: any,financed: boolean,finance_data: any,price_limits_enabled?: boolean,min_price?: number,max_price?: number,unlimited_stock?: boolean,global_stock_limit?: number,global_stock_ordered?: number}
+
+---@class FinanceData
+---@field total number Total amount to be paid (including interest)
+---@field paid number Amount paid so far
+---@field recurring_payment number Amount due each payment period
+---@field payments_complete number Number of payments made
+---@field total_payments number Total number of payments required
+---@field payment_interval number Hours between payments
+---@field payment_failed boolean Whether the last payment attempt failed
+---@field seconds_to_next_payment number Seconds until next payment is due
+---@field seconds_to_repo number Seconds until repossession (only if payment_failed)
+---@field dealership_id string Dealership identifier
+---@field vehicle string Vehicle spawn code/model
+---@field currency? string Currency used to pay the finance agreement
+
+---@class FinancedVehicle
+---@field plate string Vehicle plate
+---@field financed boolean|number Whether vehicle is financed
+---@field finance_data string|FinanceData JSON encoded or decoded finance data
+---@field vehicleLabel? string Display label for the vehicle (added client-side)
+
+---@alias FinancedVehiclesData {type: "manageFinance", vehicles: FinancedVehicle[], config: table, locale: table}
+---@alias Rgb {r:number, g:number, b:number}
+---@alias EmployeeRole string
+---@alias EmployeeResult false|"serverAdmin"|"owner"|EmployeeRole
+---@alias EmployeePermission "MANAGE_EMPLOYEES"|"MANAGE_STOCK"|"MANAGE_DISPLAY"|"MANAGE_PRICING"|"MANAGE_SETTINGS"|"MANAGE_FINANCES"|"DIRECT_SALE"|"VIEW_SALES"|"VIEW_ORDERS"|"DELIVER_ORDERS"
+---@alias ColourOptions { id: string, color: { r: number; g: number; b: number } | number }[]
+---@alias JobGangWhitelist table<string, number[]>
+---@alias SpawnCoord {x: number, y: number, z: number, w: number}
+
+---@class Employee
+---@field id number Database ID
+---@field identifier string Player identifier
+---@field dealership string Dealership ID
+---@field role EmployeeRole Employee role
+---@field joined string Joined timestamp
+---@field name? string Player name (populated when fetched for UI)
+---@field me? boolean Whether this is the current player (for UI)
+
+---@class Location
+---@field id string Unique identifier for the location
+---@field name string Display name of the location
+---@field disabled number 0 = enabled, 1 = disabled (dealership won't appear in game)
+---@field job_name string Job name required for this location
+---@field job_rank_permissions table<string, string[]> Mapping of job grade (as string) to array of permission constants
+---@field job_rank_mapping table<string, number> Mapping of built-in job roles to framework job ranks
+---@field type "owned"|"selfService" Type of dealership location
+---@field employee_commission number Employee commission
+---@field dealership_zone {points: {x: number, y: number, z: number}[], height: number} Zone polygon and height
+---@field showroom_coords Interaction[] Coordinates for showroom interactions
+---@field management_coords Interaction[] Coordinates for management interactions
+---@field purchase_vehicle_coords SpawnCoord[] Coordinates for vehicle purchase (array of spawn points)
+---@field trucking_vehicle_coords SpawnCoord[] Coordinates for trucking mission (array of spawn points)
+---@field categories table Available vehicle categories at this location
+---@field enable_finance boolean Whether financing is enabled
+---@field enable_sell_vehicle boolean Whether vehicle selling is enabled
+---@field sell_vehicle_coords Interaction[] Sell vehicle location(s)
+---@field sell_vehicle_percent number Sell vehicle percentage (i.e. 70%)
+---@field enable_test_drive boolean Whether test drives are enabled
+---@field test_drive_coords SpawnCoord[] Coordinates for test drives (array of spawn points)
+---@field camera_data table Camera configuration for showroom
+---@field colour_selection_type "DEFAULT" | "RGB" | "RGBOPT" | "IDOPT" Type of color selection system
+---@field colour_options ColourOptions Available color options
+---@field payment_methods table<string>
+---@field enable_purchase boolean Whether vehicle purchase is enabled
+---@field showroom_job_whitelist JobGangWhitelist Jobs allowed in showroom
+---@field showroom_gang_whitelist JobGangWhitelist Gangs allowed in showroom
+---@field society_purchase_job_whitelist JobGangWhitelist Jobs allowed for society purchases
+---@field society_purchase_gang_whitelist JobGangWhitelist Gangs allowed for society purchases
+---@field playerCanAccessShowroom? boolean Player-specific: whether current player can access showroom (set by server)
+---@field playerIsEmployee? boolean Player-specific: whether current player is an employee at this location (set by server)
+---@field additional_data table Additional integration data preserved across creator updates
+
+---@class UsedVehiclesDealershipDto
+---@field provider "jg-dealerships"
+---@field providerVersion integer
+---@field businessType "jg-dealerships"
+---@field business_type "jg-dealerships"
+---@field businessId string
+---@field business_id string
+---@field id string
+---@field accountReference string
+---@field name string
+---@field type "owned"
+---@field active boolean
+---@field usedVehiclesEnabled boolean
+---@field usedVehiclesSettings table
+---@field stockDrivable boolean
+---@field marketplaceEnabled boolean
+---@field restrictPricingToAdmins boolean
+---@field maxListings integer
+---@field employeeCommission number
+---@field jobName string
+---@field paymentMethods string[]
+
+---@class UsedVehiclesActorContext
+---@field requestKey? string
+---@field actorSource? number
+---@field actorIdentifier? string
+---@field accountReference? string
+---@field reason? string
+
+---@class Interaction
+---@field type "point"|"vehicle"|"object"|"ped"|"polyzone"
+---@field model? string Model name (vehicle, ped, object)
+---@field pedScenario? string Ped scenario name
+---@field vehColour? Rgb Vehicle RGB colour
+---@field coords {x: number, y: number, z: number, w?: number}[] Array of coordinates (use first for most types, all for polyzone)
+---@field zoneHeight? number Height for polyzone interactions (default 10.0)
+---@field radius? number Radius for point interactions
+---@field enableBlip boolean Whether to create a blip
+---@field blipIconId number Blip sprite ID
+---@field blipColourId number Blip color ID
+---@field blipSize number Blip scale/size
+---@field enableMarker boolean Whether to draw a marker
+---@field markerId number Marker type ID
+---@field markerSize number Marker size
+---@field markerColor {r: number, g: number, b: number, a: number} Marker color
+---@field markerBobUpAndDown boolean Whether marker bobs up and down
+---@field markerFaceCamera boolean Whether marker faces camera
+---@field markerRotate boolean Whether marker rotates
+---@field markerDrawOnEnts boolean Whether to draw marker on entities
+
+---@class TruckingPickupLocation
+---@field name string Display name of the pickup location
+---@field coords vector4 Coordinates for the pickup point
+---@field blipColor number Blip color ID
+
+---@alias VehicleSizeCategory "small"|"medium"|"large"
+
+---@class DeliveryVehicleItem
+---@field orderId number Order ID this vehicle belongs to
+---@field model string Vehicle spawn code
+---@field size VehicleSizeCategory Size category of the vehicle
+---@field quantity number Number of this vehicle to deliver
+
+---@class DeliveryPickupStop
+---@field index number Index in TruckingConfig.PickupLocations
+---@field location TruckingPickupLocation The pickup location data
+---@field vehicles DeliveryVehicleItem[] Vehicles to pick up at this stop
+
+---@class DeliveryConfiguration
+---@field trailerType "car"|"container" Type of trailer to use
+---@field pickupStop DeliveryPickupStop Single pickup stop for this delivery
+---@field occupiedIndex number Index in occupiedPickupLocations
+---@field totalVehicles number Total number of vehicles in this delivery
+---@field maxCapacity number Maximum capacity of the trailer
+---@field totalDistance number Estimated total distance in meters
+---@field estimatedTime number Estimated time in seconds
+---@field configHash string Server-generated hash to prevent route manipulation
+---@field timestamp? number Timestamp
+---@field orders {orderId: number, model: string, quantityToDeliver: number, size: VehicleSizeCategory}[] Orders included in this delivery
+
+---@class TruckingMissionState
+---@field active boolean Whether a mission is currently active
+---@field playerId number Server ID of the player doing the mission
+---@field dealershipId string Dealership identifier
+---@field trailerType "car"|"container" Type of trailer being used
+---@field truck? number Entity ID of the spawned truck
+---@field truckNetId? number Entity Net ID of the spawned truck
+---@field cargo? number Entity ID of the spawned cargo/trailer
+---@field cargoNetId? number Entity Net ID of the spawned cargo/trailer
+---@field attachedVehicles? number[] Entity IDs of vehicles attached to cargo
+---@field pickupStop DeliveryPickupStop The pickup stop for this mission
+---@field dropoffCoords? vector4 Dropoff coordinates
+---@field stage "spawned"|"driving_to_pickup"|"at_pickup"|"driving_to_dropoff"|"at_dropoff" Current mission stage
+---@field startedAt? number Unix timestamp when the mission started
+---@field startedByName? string Name of the player who started the mission
+---@field configHash string Hash used to validate this configuration
+---@field orders {orderId: number, model: string, quantityToDeliver: number, size: VehicleSizeCategory}[] Orders in this delivery
+
+---@class DirectTestDriveSession
+---@field id string Unique session identifier (UUID)
+---@field dealershipId string Dealership identifier
+---@field sellerPlayerId integer Server ID of the seller who started the test drive
+---@field sellerName string Name of the seller/employee
+---@field customerPlayerId integer Server ID of the customer
+---@field customerName string Name of the customer
+---@field vehicleNetId? integer Network ID of the spawned vehicle (set after spawn)
+---@field vehicleEntity? integer Entity ID of the spawned vehicle (set after spawn)
+---@field vehicleModel string Spawn code of the vehicle
+---@field vehicleLabel string Display name of the vehicle
+---@field plate string Vehicle plate
+---@field coords vector4 Spawn coordinates
+---@field colour number|Rgb Vehicle colour
+---@field startTime number Timestamp when test drive started (os.time())

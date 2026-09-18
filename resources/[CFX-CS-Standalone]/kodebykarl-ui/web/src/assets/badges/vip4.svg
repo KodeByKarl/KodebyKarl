@@ -1,0 +1,21 @@
+<svg width="256" height="256" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vip4Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="40%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#713f12" />
+    </linearGradient>
+  </defs>
+  <path d="M 12 46 C 6 32 18 20 32 24 C 24 32 28 42 34 46 Z" fill="url(#vip4Grad)" opacity="0.8"/>
+  <path d="M 88 46 C 94 32 82 20 68 24 C 76 32 72 42 66 46 Z" fill="url(#vip4Grad)" opacity="0.8"/>
+  <path d="M 50 14 L 78 26 C 78 58 50 82 50 88 C 50 82 22 58 22 26 Z" fill="#1e1302" stroke="url(#vip4Grad)" stroke-width="3.5" stroke-linejoin="round"/>
+  <g fill="url(#vip4Grad)">
+    <polygon points="36,34 37,38 41,38 38,40 39,44 36,42 33,44 34,40 31,38 35,38" />
+    <polygon points="45,31 46,35 50,35 47,37 48,41 45,39 42,41 43,37 40,35 44,35" />
+    <polygon points="55,31 56,35 60,35 57,37 58,41 55,39 52,41 53,37 50,35 54,35" />
+    <polygon points="64,34 65,38 69,38 66,40 67,44 64,42 61,44 62,40 59,38 63,38" />
+  </g>
+  <path d="M 40 58 L 44 48 L 50 53 L 56 48 L 60 58 Z" fill="url(#vip4Grad)"/>
+  <rect x="25" y="70" width="50" height="12" rx="3" fill="#120b02" stroke="url(#vip4Grad)" stroke-width="1.2" />
+  <text x="50" y="79" fill="url(#vip4Grad)" font-size="7" font-family="sans-serif" font-weight="900" text-anchor="middle" letter-spacing="0.8">VIP 4</text>
+</svg>

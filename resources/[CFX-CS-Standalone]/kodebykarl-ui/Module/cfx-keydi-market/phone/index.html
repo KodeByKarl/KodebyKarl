@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Grim Market</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="app" id="app">
+        <header class="header">
+            <div class="brand">
+                <div class="logo-mark">$</div>
+                <div>
+                    <div class="eyebrow">Grim City</div>
+                    <h1>Market</h1>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="next" id="countdown">--</div>
+                <button class="refresh" id="refresh" type="button" title="Refresh">↻</button>
+            </div>
+        </header>
+
+        <div class="search-wrap">
+            <input id="search" type="text" placeholder="Search prices..." autocomplete="off" spellcheck="false" />
+        </div>
+
+        <div class="cats" id="cats"></div>
+
+        <div class="list" id="list">
+            <div class="empty">Loading prices…</div>
+        </div>
+
+        <footer class="footer">View only · Sell at the market NPC</footer>
+    </div>
+
+    <script>
+        window.addEventListener('message', function (e) {
+            if (e.data === 'componentsLoaded') {
+                if (document.getElementById('market-script')) return;
+                var script = document.createElement('script');
+                script.id = 'market-script';
+                script.src = 'script.js';
+                document.body.appendChild(script);
+            }
+        });
+    </script>
+</body>
+</html>

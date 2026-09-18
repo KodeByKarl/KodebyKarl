@@ -1,0 +1,14 @@
+<svg width="256" height="256" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vip1Bronze" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fed7aa" />
+      <stop offset="40%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+  </defs>
+  <path d="M 50 14 L 78 26 C 78 58 50 82 50 88 C 50 82 22 58 22 26 Z" fill="#170d03" stroke="url(#vip1Bronze)" stroke-width="3.5" stroke-linejoin="round"/>
+  <polygon points="50,30 52.5,38 60.5,38 54,43 56.5,51 50,46 43.5,51 46,43 39.5,38 47.5,38" fill="url(#vip1Bronze)"/>
+  <path d="M 36 56 C 42 62 58 62 64 56" stroke="url(#vip1Bronze)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <rect x="25" y="70" width="50" height="12" rx="3" fill="#0f0802" stroke="url(#vip1Bronze)" stroke-width="1.2" />
+  <text x="50" y="79" fill="#fbbf24" font-size="7" font-family="sans-serif" font-weight="900" text-anchor="middle" letter-spacing="0.8">VIP 1</text>
+</svg>

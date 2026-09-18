@@ -1,0 +1,27 @@
+# FiveM Asset Packs (Cars, EUP, Maps)
+resources/\[CFX-CS-Cars\]/
+resources/\[CFX-CS-EUP\]/
+resources/\[CFX-CS-Maps\]/
+\[CFX-CS-Cars\]/
+\[CFX-CS-EUP\]/
+\[CFX-CS-Maps\]/
+
+# FXServer runtime & cache
+cache/
+files/
+crashometry/
+.replxx_history
+imgui.ini
+*.log
+
+# Dependencies & Build artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS & IDE metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

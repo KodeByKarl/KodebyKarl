@@ -1,0 +1,201 @@
+@font-face {
+    font-family: "Pricedown";
+    src: url("../fonts/pdown.ttf");
+}
+
+@font-face {
+    font-family: "bankgothic";
+    src: url("../fonts/bankgothic.ttf");
+}
+
+html {
+    overflow: hidden;
+}
+
+#inventory_notifications {
+    font-family: bankgothic;
+    position: absolute;
+    right: 40;
+    bottom: 40;
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.menu {
+    font-family: "Open Sans", sans-serif;
+    min-width: 400px;
+    min-height: 250px;
+    color: #fff;
+    position: absolute;
+    left: 40;
+    top: 0;
+}
+
+.menu .head {
+    font-family: "Open Sans", sans-serif;
+    font-size: 28px;
+    padding: 10px;
+    background: #1a1a1a;
+    border-bottom: 3px solid #bc1635;
+    border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    -o-border-radius: 10px 10px 0 0;
+    box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+    -webkit-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+    -moz-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+    -o-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+    box-shadow: 1px 1px 10px 4px rgba(0, 0, 0, 0.4);
+}
+
+.menu .head span {
+    font-family: "Pricedown";
+    font-size: 28px;
+    padding-left: 15px;
+    padding-top: 6px;
+}
+
+.menu .menu-items .menu-item {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    height: 40px;
+    display: block;
+    background-color: #f1f1f1;
+    box-shadow: inset 1px 0px 0px 1px #b8b8b8;
+    height: 32px;
+    line-height: 32px;
+    color: #3a3a3a;
+    text-align: center;
+}
+
+.menu .menu-items .menu-item.selected {
+    background-color: #ccc;
+}
+
+
+
+/* mythic notify */
+:root {
+  --notif-text: #eef0ff;
+
+  --success: #5dd6c2;
+  --info: #5da9ff;
+  --error: #ff5d6c;
+  --warning: #f5c26b;
+
+  --glow-success: 0 0 10px rgba(93, 214, 194, 0.45);
+  --glow-info: 0 0 10px rgba(93, 169, 255, 0.45);
+  --glow-error: 0 0 10px rgba(255, 93, 108, 0.45);
+  --glow-warning: 0 0 10px rgba(245, 194, 107, 0.45);
+}
+
+/* ================= CONTAINER ================= */
+
+.notif-container {
+  position: absolute;
+  top: 1%;
+  right: 24%;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  pointer-events: none;
+}
+
+/* ================= BASE NOTIFICATION ================= */
+
+.notificationmythic {
+  padding: 6px 10px;
+  width: fit-content;
+  max-width: 280px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: var(--notif-text);
+  animation: opacity 0.25s ease-out;
+}
+
+/* ================= TYPES ================= */
+
+.success {
+  background: linear-gradient(135deg, #1f6f64, var(--success));
+  box-shadow: var(--glow-success);
+}
+
+.info {
+  background: linear-gradient(135deg, #1b3d6b, var(--info));
+  box-shadow: var(--glow-info);
+}
+
+.error {
+  background: linear-gradient(135deg, #5c0e17, var(--error));
+  box-shadow: var(--glow-error);
+}
+
+.warning {
+  background: linear-gradient(135deg, #6b4f14, var(--warning));
+  box-shadow: var(--glow-warning);
+}
+
+.notif-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  margin-right: 6px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #eef0ff;
+  white-space: nowrap;
+}
+
+/* Reuse your notification types */
+.notif-badge.success {
+  background: linear-gradient(135deg, #1f6f64, var(--success));
+  box-shadow: var(--glow-success);
+}
+
+.notif-badge.info {
+  background: linear-gradient(135deg, #1b3d6b, var(--info));
+  box-shadow: var(--glow-info);
+}
+
+.notif-badge.error {
+  background: linear-gradient(135deg, #5c0e17, var(--error));
+  box-shadow: var(--glow-error);
+}
+
+.notif-badge.warning {
+  background: linear-gradient(135deg, #6b4f14, var(--warning));
+  box-shadow: var(--glow-warning);
+}
+
+
+/* ================= SVG ================= */
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes light {
+  0%   { opacity: 0.25; }
+  50%  { opacity: 0.65; }
+  100% { opacity: 1; }
+}
+
+/* mythic notify */

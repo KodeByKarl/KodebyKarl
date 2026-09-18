@@ -1,0 +1,15 @@
+CreateThread(function()
+    for k,v in pairs(Config.LawEnforcement) do
+        local blip = AddBlipForCoord(v.Blip.Coords)
+		SetBlipSprite (blip, v.Blip.Sprite)
+		SetBlipColour (blip, v.Blip.Colour)
+		SetBlipScale  (blip, v.Blip.Scale or 0.8)
+		SetBlipAsShortRange(blip, true)
+		SetBlipDisplay(blip, v.Blip.Display or 4)
+		SetBlipHighDetail(blip, true)
+		SetBlipCategory(blip, v.Blip.Category or 1)
+		BeginTextCommandSetBlipName('STRING')
+		AddTextComponentSubstringPlayerName(v.Blip.Label)
+		EndTextCommandSetBlipName(blip)
+    end
+end)

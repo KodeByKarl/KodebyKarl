@@ -1,0 +1,19 @@
+<svg width="256" height="256" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7" />
+      <stop offset="40%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+    <linearGradient id="silverTrim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#94a3b8" />
+      <stop offset="100%" stop-color="#475569" />
+    </linearGradient>
+  </defs>
+  <path d="M 50 14 L 78 26 C 78 58 50 82 50 88 C 50 82 22 58 22 26 Z" fill="url(#emeraldGrad)" stroke="url(#silverTrim)" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M 50 22 L 71 32 C 71 56 50 74 50 78 C 50 74 29 56 29 32 Z" fill="#031a13" stroke="url(#silverTrim)" stroke-width="1.2"/>
+  <polygon points="50,34 54,44 64,44 56,50 59,60 50,54 41,60 44,50 36,44 46,44" fill="url(#silverTrim)"/>
+  <rect x="27" y="70" width="46" height="12" rx="3" fill="#02150f" stroke="url(#silverTrim)" stroke-width="1.2" />
+  <text x="50" y="79" fill="#34d399" font-size="7" font-family="sans-serif" font-weight="900" text-anchor="middle" letter-spacing="0.8">ADMIN</text>
+</svg>

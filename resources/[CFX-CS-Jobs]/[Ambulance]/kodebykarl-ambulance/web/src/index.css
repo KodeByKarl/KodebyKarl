@@ -1,0 +1,1163 @@
+:root {
+  --bg: transparent;
+  --grim-panel: rgba(14, 12, 16, 0.97);
+  --grim-inset: rgba(10, 10, 12, 0.96);
+  --grim-red: #ff3a3a;
+  --grim-red-soft: #ff4d4d;
+  --grim-red-deep: #b01010;
+  --grim-border: rgba(255, 58, 58, 0.85);
+  --grim-muted: #8a8086;
+  --text-main: #ffffff;
+  --text-muted: #9a9096;
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  user-select: none;
+  background: transparent;
+}
+
+/* CENTER BOTTOM POSITIONING WRAPPER */
+.death-screen-wrapper {
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* MAIN CARD — same footprint, Grim deathscreen theme */
+.death-bar-container {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--grim-panel);
+  border-radius: 12px;
+  border: 2px solid var(--grim-border);
+  padding: 10px 16px 10px 12px;
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.88),
+    0 0 22px rgba(255, 58, 58, 0.1);
+}
+
+/* VERTICAL ACCENT LINE */
+.accent-line {
+  width: 3px;
+  height: 28px;
+  background: var(--grim-red);
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(255, 58, 58, 0.45);
+}
+
+/* LOGO AVATAR BADGE */
+.logo-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 58, 58, 0.6);
+  background: rgba(55, 10, 14, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 58, 58, 0.25);
+}
+
+.logo-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* TITLE & SUBTITLE GROUP */
+.title-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.subtitle {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--grim-red-soft);
+  text-transform: uppercase;
+}
+
+.main-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+/* TIMER PILL BADGE */
+.timer-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--grim-inset);
+  border: 1px solid rgba(255, 58, 58, 0.5);
+  border-radius: 20px;
+  padding: 6px 14px;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.clock-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--grim-red-soft);
+}
+
+.timer-text {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "Courier New", Courier, monospace, sans-serif;
+  color: var(--text-main);
+  letter-spacing: 1px;
+}
+
+/* ACTION / KEYBIND BUTTON */
+.action-pill {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 58, 58, 0.5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.action-pill.is-active {
+  border-color: var(--grim-red);
+}
+
+.key-box {
+  background: linear-gradient(135deg, var(--grim-red), var(--grim-red-deep));
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label-box {
+  background: var(--grim-inset);
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 14px;
+  white-space: nowrap;
+}
+
+/* ===== PATIENT VITALS MONITOR (Grim EMS theme) ===== */
+.vitals-wrapper {
+  position: fixed;
+  right: 28px;
+  bottom: 48px;
+  z-index: 80;
+  pointer-events: none;
+}
+
+.vitals-monitor {
+  width: 520px;
+  background: var(--grim-panel);
+  border: 2px solid var(--grim-border);
+  border-radius: 14px;
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.88),
+    0 0 22px rgba(255, 58, 58, 0.1);
+  overflow: hidden;
+  color: var(--text-main);
+}
+
+.vitals-monitor.is-dead {
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.9),
+    0 0 28px rgba(255, 58, 58, 0.18);
+}
+
+.vm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px 8px;
+  background: rgba(40, 12, 16, 0.72);
+  border-bottom: 1px solid rgba(255, 58, 58, 0.28);
+}
+
+.vm-brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--grim-red-soft);
+}
+
+.vm-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--grim-red);
+  box-shadow: 0 0 8px rgba(255, 58, 58, 0.7);
+  animation: vmPulse 1.4s ease-in-out infinite;
+}
+
+.vm-dot.is-off,
+.vitals-monitor.no-pulse .vm-dot {
+  background: #5a4044;
+  box-shadow: none;
+  animation: none;
+}
+
+.vitals-monitor.has-pulse.is-dead .vm-dot {
+  background: #ff8a4a;
+  box-shadow: 0 0 8px rgba(255, 138, 74, 0.65);
+  animation: vmPulse 2.2s ease-in-out infinite;
+}
+
+.vm-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.vm-clock {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--grim-muted);
+}
+
+.vm-patient {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px 8px;
+}
+
+.vm-name {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.vm-meta {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.vm-badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.vm-badge.ok {
+  color: #7dffb0;
+  background: rgba(61, 255, 154, 0.08);
+  border-color: rgba(61, 255, 154, 0.3);
+}
+.vm-badge.warn {
+  color: #ffd24c;
+  background: rgba(255, 210, 76, 0.1);
+  border-color: rgba(255, 210, 76, 0.35);
+}
+.vm-badge.bad {
+  color: #ffb0b0;
+  background: rgba(255, 58, 58, 0.14);
+  border-color: rgba(255, 58, 58, 0.55);
+}
+
+.vm-ecg {
+  display: grid;
+  grid-template-columns: 22px 1fr 72px;
+  gap: 6px;
+  align-items: center;
+  padding: 0 12px 8px;
+}
+
+.vm-ecg-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--grim-red-soft);
+}
+
+.vm-ecg-label.agonal { color: #ff8a4a; }
+.vm-ecg-label.flat { color: #6a5054; }
+
+.vm-ecg-track {
+  height: 58px;
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(255, 58, 58, 0.08) 1px, transparent 1px) 0 0 / 100% 12px,
+    var(--grim-inset);
+  overflow: hidden;
+  border: 1px solid rgba(255, 58, 58, 0.28);
+}
+
+.vm-ecg-track.is-agonal {
+  border-color: rgba(255, 138, 74, 0.4);
+}
+
+.vm-ecg-track.is-flat {
+  border-color: rgba(255, 58, 58, 0.18);
+}
+
+.vm-ecg-track svg {
+  width: 200%;
+  height: 100%;
+  display: block;
+}
+
+.vm-ecg-track svg line,
+.vm-ecg-track svg path {
+  fill: none;
+  stroke: var(--grim-red-soft);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.vm-ecg-track svg.agonal path {
+  stroke: #ff8a4a;
+  stroke-width: 1.7;
+}
+
+.vm-ecg-track svg.flat line {
+  stroke: #ff3a3a;
+  stroke-width: 2;
+  opacity: 0.85;
+}
+
+.vm-ecg-wave {
+  animation: vmEcg 1s linear infinite;
+}
+
+.vm-hr-block {
+  text-align: right;
+}
+
+.vm-hr {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--grim-red-soft);
+}
+
+.vm-hr.ok { color: #7dffb0; }
+.vm-hr.bad { color: var(--grim-red-soft); }
+.vm-hr.warn { color: #ffd24c; }
+
+.vm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 0 12px 10px;
+}
+
+.vm-cell {
+  background: var(--grim-inset);
+  border: 1px solid rgba(255, 58, 58, 0.28);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.vm-cell-label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--grim-muted);
+}
+
+.vm-cell-value {
+  margin-top: 2px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.vm-cell-value.lg { font-size: 22px; }
+.vm-cell.ok .vm-cell-value { color: #7dffb0; }
+.vm-cell.warn .vm-cell-value { color: #ffd24c; }
+.vm-cell.bad .vm-cell-value { color: var(--grim-red-soft); }
+
+.vm-unit {
+  margin-left: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--grim-muted);
+}
+
+.vm-cell-status {
+  margin-top: 2px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.vm-row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 8px;
+  padding: 0 12px 10px;
+}
+
+.vm-blood, .vm-bleed {
+  background: var(--grim-inset);
+  border: 1px solid rgba(255, 58, 58, 0.28);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.vm-bar {
+  margin: 7px 0 5px;
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.vm-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--grim-red-deep), var(--grim-red));
+}
+
+.vm-bar-fill.ok { background: linear-gradient(90deg, #1a8a4a, #7dffb0); }
+.vm-bar-fill.warn { background: #ffd24c; }
+.vm-bar-fill.bad { background: linear-gradient(90deg, var(--grim-red-deep), var(--grim-red)); }
+
+.vm-blood-val {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.vm-blood-val span {
+  color: var(--grim-muted);
+  font-weight: 600;
+}
+
+.vm-bleed-val {
+  margin-top: 4px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #7dffb0;
+}
+
+.vm-bleed.bad .vm-bleed-val { color: var(--grim-red-soft); }
+
+.vm-injuries {
+  padding: 0 12px 10px;
+}
+
+.vm-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.vm-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--grim-inset);
+  border: 1px solid rgba(255, 58, 58, 0.28);
+}
+
+.vm-chip em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--grim-muted);
+}
+
+.vm-chip.warn { border-color: rgba(255, 210, 76, 0.35); color: #ffd24c; }
+.vm-chip.bad { border-color: rgba(255, 58, 58, 0.5); color: var(--grim-red-soft); }
+.vm-chip.ok { color: #7dffb0; border-color: rgba(61, 255, 154, 0.3); }
+
+/* ===== ANATOMY / TRAUMA MAP ===== */
+.vm-anatomy {
+  padding: 0 12px 10px;
+  pointer-events: auto;
+}
+
+.vm-anatomy-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.vm-anatomy-legend {
+  display: flex;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.vm-anatomy-legend .leg::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.vm-anatomy-legend .leg.mild { color: #ffd24c; }
+.vm-anatomy-legend .leg.mild::before { background: #ffd24c; box-shadow: 0 0 6px #ffd24c; }
+.vm-anatomy-legend .leg.severe { color: #ff8c42; }
+.vm-anatomy-legend .leg.severe::before { background: #ff8c42; box-shadow: 0 0 6px #ff8c42; }
+.vm-anatomy-legend .leg.crit { color: var(--grim-red-soft); }
+.vm-anatomy-legend .leg.crit::before { background: var(--grim-red); box-shadow: 0 0 6px var(--grim-red); }
+
+.vm-anatomy-body {
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.vm-anatomy-stage {
+  position: relative;
+  background: var(--grim-inset);
+  border: 1px solid rgba(255, 58, 58, 0.28);
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 250px;
+}
+
+.vm-anatomy-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+}
+
+.vm-part {
+  transition: fill 0.18s ease, stroke 0.18s ease, filter 0.18s ease;
+  cursor: default;
+}
+
+.vm-part.hit {
+  cursor: pointer;
+}
+
+.vm-part.on {
+  filter: brightness(1.18);
+}
+
+.vm-side-label {
+  fill: rgba(138, 128, 134, 0.7);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.vm-hit-mark .vm-hit-ring {
+  fill: rgba(255, 58, 58, 0.12);
+  stroke: var(--grim-red);
+  stroke-width: 1.4;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: vmHitPulse 1.6s ease-in-out infinite;
+}
+
+.vm-hit-mark.mild .vm-hit-ring { stroke: #ffd24c; fill: rgba(255, 210, 76, 0.12); }
+.vm-hit-mark.severe .vm-hit-ring { stroke: #ff8c42; fill: rgba(255, 140, 66, 0.12); }
+.vm-hit-mark.crit .vm-hit-ring { stroke: var(--grim-red); fill: rgba(255, 58, 58, 0.14); }
+
+.vm-hit-mark .vm-hit-core {
+  fill: var(--grim-red);
+}
+
+.vm-hit-mark.mild .vm-hit-core { fill: #ffd24c; }
+.vm-hit-mark.severe .vm-hit-core { fill: #ff8c42; }
+
+.vm-hit-mark .vm-hit-cross {
+  stroke: rgba(255, 255, 255, 0.85);
+  stroke-width: 1.2;
+}
+
+.vm-hit-mark.on .vm-hit-ring {
+  stroke-width: 2;
+}
+
+.vm-callout {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 8px;
+  bottom: auto;
+  display: grid;
+  gap: 1px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: rgba(10, 10, 12, 0.9);
+  border: 1px solid rgba(255, 58, 58, 0.35);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.vm-callout strong {
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.vm-callout span {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.vm-callout em {
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.vm-callout.mild em { color: #ffd24c; }
+.vm-callout.severe em { color: #ff8c42; }
+.vm-callout.crit em { color: var(--grim-red-soft); }
+
+.vm-anatomy-dossier {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--grim-inset);
+  border: 1px solid rgba(255, 58, 58, 0.28);
+  border-radius: 12px;
+  padding: 8px 8px 6px;
+}
+
+.vm-dossier-empty {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #7dffb0;
+  font-weight: 700;
+}
+
+.vm-dossier-list {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  overflow: auto;
+  max-height: 210px;
+}
+
+.vm-dossier-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  grid-template-rows: auto auto;
+  gap: 2px 8px;
+  align-items: center;
+  text-align: left;
+  padding: 7px 8px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 58, 58, 0.22);
+  background: rgba(14, 12, 16, 0.75);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.vm-dossier-item:hover,
+.vm-dossier-item.on {
+  border-color: rgba(255, 58, 58, 0.65);
+  background: rgba(55, 10, 14, 0.85);
+}
+
+.vm-dossier-item.crit.on { border-color: rgba(255, 58, 58, 0.75); }
+.vm-dossier-item.severe.on { border-color: rgba(255, 140, 66, 0.55); }
+.vm-dossier-item.mild.on { border-color: rgba(255, 210, 76, 0.45); }
+
+.vm-dossier-sev {
+  grid-row: 1 / span 2;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffd24c;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.vm-dossier-item.mild .vm-dossier-sev { background: #ffd24c; color: #ffd24c; }
+.vm-dossier-item.severe .vm-dossier-sev { background: #ff8c42; color: #ff8c42; }
+.vm-dossier-item.crit .vm-dossier-sev { background: var(--grim-red); color: var(--grim-red); }
+
+.vm-dossier-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.vm-dossier-text strong {
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+}
+
+.vm-dossier-text em {
+  font-style: normal;
+  font-size: 10px;
+  color: var(--grim-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vm-dossier-meter {
+  grid-column: 2;
+  height: 3px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.vm-dossier-meter i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: #ffd24c;
+}
+
+.vm-dossier-item.severe .vm-dossier-meter i { background: #ff8c42; }
+.vm-dossier-item.crit .vm-dossier-meter i { background: var(--grim-red); }
+
+.vm-anatomy-scan {
+  position: relative;
+  margin-top: 8px;
+  padding: 6px 8px;
+  overflow: hidden;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 58, 58, 0.28);
+  background: rgba(10, 10, 12, 0.95);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  color: var(--grim-red-soft);
+  text-align: center;
+}
+
+.vm-scan-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--grim-red), transparent);
+  animation: vmScan 2.4s linear infinite;
+  opacity: 0.85;
+}
+
+@keyframes vmHitPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.18); }
+}
+
+@keyframes vmScan {
+  from { transform: translateY(0); }
+  to { transform: translateY(22px); }
+}
+
+.vm-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px 10px;
+  border-top: 1px solid rgba(255, 58, 58, 0.22);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--grim-muted);
+  text-transform: uppercase;
+}
+
+@keyframes vmEcg {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100px); }
+}
+
+@keyframes vmPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* ===== GRIM EMS PANEL (compressed Full version) ===== */
+.grim-ems-wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 52px;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  padding: 0 16px;
+}
+
+.grim-ems-panel {
+  pointer-events: auto;
+  width: min(420px, 94vw);
+  background: var(--grim-panel);
+  border: 2px solid var(--grim-border);
+  border-radius: 14px;
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.88),
+    0 0 22px rgba(255, 58, 58, 0.1);
+  padding: 12px 12px 10px;
+  color: var(--text-main);
+}
+
+.grim-ems-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.grim-ems-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.grim-ems-accent {
+  width: 3px;
+  height: 28px;
+  border-radius: 4px;
+  background: var(--grim-red);
+  box-shadow: 0 0 8px rgba(255, 58, 58, 0.45);
+  flex-shrink: 0;
+}
+
+.grim-ems-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 58, 58, 0.6);
+  background: rgba(55, 10, 14, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.grim-ems-logo img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.grim-ems-kicker {
+  margin: 0;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--grim-red-soft);
+}
+
+.grim-ems-brand h1 {
+  margin: 1px 0 0;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.grim-ems-pulse {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.grim-ems-pulse strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--grim-red-soft);
+  line-height: 1;
+}
+
+.grim-ems-pulse span {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--grim-muted);
+}
+
+.grim-ems-min {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 58, 58, 0.45);
+  background: var(--grim-inset);
+  color: #c8c0c4;
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.grim-ems-min:hover {
+  border-color: var(--grim-red);
+  color: #fff;
+}
+
+.grim-ems-timer-row {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.grim-ems-label {
+  margin: 0;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--grim-red-soft);
+}
+
+.grim-ems-clock {
+  margin-top: 2px;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+
+.grim-ems-hint {
+  margin: 0 0 2px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  max-width: 46%;
+  line-height: 1.25;
+}
+
+.grim-ems-bar {
+  margin-top: 8px;
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.grim-ems-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--grim-red-deep), var(--grim-red));
+  transition: width 0.4s ease;
+}
+
+.grim-ems-loc-label {
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.grim-ems-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.grim-ems-card {
+  position: relative;
+  text-align: left;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 58, 58, 0.4);
+  background: var(--grim-inset);
+  padding: 8px 10px 7px;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.12s ease;
+}
+
+.grim-ems-card:hover {
+  border-color: rgba(255, 58, 58, 0.75);
+}
+
+.grim-ems-card.is-off,
+.grim-ems-card:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.grim-ems-card.is-off:hover,
+.grim-ems-card:disabled:hover {
+  border-color: rgba(255, 58, 58, 0.4);
+}
+
+.grim-ems-card.is-on {
+  border-color: var(--grim-red);
+  background: rgba(55, 10, 14, 0.95);
+  box-shadow: inset 0 0 0 1px rgba(255, 58, 58, 0.25);
+}
+
+.grim-ems-card strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #fff;
+  padding-right: 14px;
+  line-height: 1.2;
+}
+
+.grim-ems-card em {
+  display: block;
+  margin-top: 1px;
+  font-style: normal;
+  font-size: 10px;
+  color: var(--grim-muted);
+}
+
+.grim-ems-cost {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--grim-red-soft);
+}
+
+.grim-ems-radio {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 128, 128, 0.45);
+  box-sizing: border-box;
+}
+
+.grim-ems-radio.is-on {
+  border-color: var(--grim-red);
+  background: radial-gradient(circle at center, var(--grim-red) 0 42%, transparent 46%);
+}
+
+.grim-ems-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+}
+
+.grim-ems-confirm {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffb0b0;
+  background: rgba(40, 18, 22, 0.95);
+  border: 1px solid rgba(255, 58, 58, 0.35);
+  cursor: pointer;
+}
+
+.grim-ems-confirm:not(.is-off) {
+  color: #fff;
+  background: linear-gradient(135deg, var(--grim-red), var(--grim-red-deep));
+  border-color: var(--grim-red);
+}
+
+.grim-ems-confirm.is-off {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.grim-ems-distress {
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 58, 58, 0.55);
+  background: var(--grim-inset);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.grim-ems-distress:hover:not(:disabled) {
+  border-color: var(--grim-red);
+}
+
+.grim-ems-distress.is-sent,
+.grim-ems-distress:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.grim-ems-foot {
+  margin: 8px 0 0;
+  font-size: 10px;
+  color: var(--grim-muted);
+  text-align: center;
+}
+
+.action-pill-btn {
+  pointer-events: auto;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  appearance: none;
+}
+

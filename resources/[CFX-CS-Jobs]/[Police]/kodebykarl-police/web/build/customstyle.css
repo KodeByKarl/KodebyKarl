@@ -1,0 +1,13 @@
+/* Add your custom styles in this file */
+
+/* Hide Position / Rank fields on document templates */
+label:has(input[name*="position" i]),
+label:has(textarea[name*="position" i]),
+label:has(input[name*="rank" i]),
+label:has(textarea[name*="rank" i]),
+[class*="issuerPosition"],
+[class*="issuer-position"],
+[class*="issuerRank"],
+[class*="issuer-rank"] {
+  display: none !important;
+}

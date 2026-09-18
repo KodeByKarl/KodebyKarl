@@ -1,0 +1,83 @@
+-- Falling = {
+-- 	['displayText'] = 'Press ~g~E~s~ to teleport to ground!', -- message which will be displayed
+-- 	['key'] = 38, 													-- key which activates the teleport (https://docs.fivem.net/docs/game-references/controls/)
+-- 	['preset'] = false,												-- false: place ped at current location on ground | true: place ped at preset location in config
+-- 	['coords'] = { x=0.0, y=0.0, z=0.0 },							-- coordinates for preset location
+-- 	['z_check'] = 0.0,												-- z co-ordinate to prompt the player at, found 0.0 to be the best
+-- 	['freeze'] = false,												-- whether or not to freeze the player for specified amount after teleporting
+-- 	['freeze_time'] = 2,											-- number of seconds to freeze player
+-- 	['check_swimming'] = true,										-- ignore players that are swimming
+-- 	['check_falling'] = true,										-- ignore players that are not falling
+-- 	['check_inside'] = true,										-- ignore players that are inside buildings - experimental -
+-- }
+
+-- local function DrawText3D(text, font, centre, x, y, scale, r, g, b, a)
+-- 	SetTextFont(font)
+-- 	SetTextProportional(1)
+-- 	SetTextScale(0.0, 0.3)
+-- 	SetTextColour(r, g, b, a)
+-- 	SetTextDropShadow(0, 0, 0, 0, 255)
+-- 	SetTextEdge(1, 0, 0, 0, 255)
+-- 	SetTextDropShadow()
+-- 	SetTextOutline()
+-- 	SetTextCentre(centre)
+-- 	SetTextEntry("STRING")
+-- 	AddTextComponentString(text)
+-- 	DrawText(x, y)
+-- end
+
+-- CreateThread(function()
+-- 	while true do
+-- 		local sleep = 1000
+-- 		if Player(cache.serverId).state.dead or not DoesEntityExist(cache.ped) then
+-- 			Wait(1000)
+-- 			goto m_next
+-- 		end
+-- 		_coords = GetEntityCoords(cache.ped)
+-- 		_, z = GetGroundZFor_3dCoord(_coords.x, _coords.y, 150.0, 0)
+-- 		if _coords.z < Falling.z_check then
+-- 			sleep = 0
+-- 			local flag_swimming, flag_falling, flag_inside, flag_VehicleFalling = true, true, true, true
+-- 			if Falling.check_swimming and (IsPedSwimming(cache.ped) or IsPedSwimmingUnderWater(cache.ped)) then
+-- 				flag_swimming = false
+-- 			end
+-- 			if Falling.check_falling and not IsPedFalling(cache.ped) then
+-- 				flag_falling = false
+-- 			end
+-- 			if Falling.check_inside and not IsPedFalling(cache.ped) and z > _coords.z then 
+-- 				flag_inside = false
+-- 			end
+-- 			if not cache.vehicle and cache.seat ~= -1 then
+-- 				flag_VehicleFalling = false
+-- 			end
+-- 			if flag_falling and flag_swimming and flag_inside or flag_VehicleFalling then
+-- 				DrawText3D(Falling.displayText, 0, 1, 0.5, 0.8, 0.4, 128, 128, 128, 255)
+-- 			end
+-- 			if IsControlJustReleased(0, Falling.key) and (flag_falling and flag_swimming and flag_inside or flag_VehicleFalling) then
+-- 				ClearPedTasks(cache.ped)
+-- 				if Falling.preset then
+-- 					SetEntityCoords(cache.ped, Falling.coords.x, Falling.coords.y, Falling.coords.z, true, false, false, false)
+-- 				else
+-- 					if cache.vehicle and cache.seat == -1 then
+-- 						SetPedCoordsKeepVehicle(cache.ped, _coords.x, _coords.y, z + 1.0)
+-- 					else
+-- 						SetEntityCoords(cache.ped, _coords.x, _coords.y, z + 1.0, true, false, false, false)
+-- 					end
+-- 				end
+-- 				if Falling.freeze then
+-- 					CreateThread(function()
+-- 						FreezeEntityPosition(cache.ped, true)
+-- 						local timer = Falling.freeze_time
+-- 						while timer > 0 do
+-- 							timer = timer - 1
+-- 							Wait(1000)
+-- 						end
+-- 						FreezeEntityPosition(cache.ped, false)
+-- 					end)
+-- 				end
+-- 			end
+-- 		end
+-- 		::m_next::
+-- 		Wait(sleep)
+-- 	end
+-- end)

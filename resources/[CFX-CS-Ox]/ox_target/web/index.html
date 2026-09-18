@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="eye">
+      <svg id="eyeSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <circle class="outer-circle" cx="12" cy="12" r="5" />
+        <circle class="inner-dot" cx="12" cy="12" r="1.8" />
+      </svg>
+    </div>
+
+    <div id="target-container" style="display: none;">
+      <div class="card-header">
+        <div class="header-left">
+          <div class="header-icon-circle">
+            <i class="fa-solid fa-crosshairs"></i>
+          </div>
+          <div class="header-text">
+            <span class="header-subtitle">TARGET</span>
+            <span class="header-title">Interactions</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <span id="options-count" class="count-badge">0</span>
+        </div>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <div id="options-wrapper"></div>
+
+      <div class="card-footer">
+        <span class="key-badge">LMB</span>
+        <span class="footer-text">Select Interaction</span>
+      </div>
+    </div>
+
+    <script defer type="module" src="js/main.js"></script>
+  </body>
+</html>

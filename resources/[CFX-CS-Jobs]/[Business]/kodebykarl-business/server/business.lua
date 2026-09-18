@@ -1,0 +1,2 @@
+-- Crafting handlers moved to server/craft.lua.
+-- Old events that accepted client item names / counts are intentionally gone.

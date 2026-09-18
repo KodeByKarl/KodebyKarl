@@ -1,0 +1,21 @@
+<svg width="256" height="256" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vip2Sapphire" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#93c5fd" />
+      <stop offset="40%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+    <linearGradient id="vip2Silver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#94a3b8" />
+    </linearGradient>
+  </defs>
+  <path d="M 50 14 L 78 26 C 78 58 50 82 50 88 C 50 82 22 58 22 26 Z" fill="#031024" stroke="url(#vip2Sapphire)" stroke-width="3.5" stroke-linejoin="round"/>
+  <g fill="url(#vip2Silver)">
+    <polygon points="42,32 43.5,37 48.5,37 44.5,40 46,45 42,42 38,45 39.5,40 35.5,37 40.5,37" />
+    <polygon points="58,32 59.5,37 64.5,37 60.5,40 62,45 58,42 54,45 55.5,40 51.5,37 56.5,37" />
+  </g>
+  <polygon points="50,48 57,56 50,64 43,56" fill="url(#vip2Sapphire)" />
+  <rect x="25" y="70" width="50" height="12" rx="3" fill="#020a17" stroke="url(#vip2Sapphire)" stroke-width="1.2" />
+  <text x="50" y="79" fill="#60a5fa" font-size="7" font-family="sans-serif" font-weight="900" text-anchor="middle" letter-spacing="0.8">VIP 2</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg width="256" height="256" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff2a3" />
+      <stop offset="30%" stop-color="#ffd700" />
+      <stop offset="70%" stop-color="#d4af37" />
+      <stop offset="100%" stop-color="#8a6700" />
+    </linearGradient>
+    <linearGradient id="rubyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff4d6d" />
+      <stop offset="50%" stop-color="#c9184a" />
+      <stop offset="100%" stop-color="#590d22" />
+    </linearGradient>
+  </defs>
+  <path d="M 12 48 C 5 35 15 22 30 25 C 22 34 26 44 32 48 C 22 50 18 42 12 48 Z" fill="url(#goldGrad)" opacity="0.9"/>
+  <path d="M 88 48 C 95 35 85 22 70 25 C 78 34 74 44 68 48 C 78 50 82 42 88 48 Z" fill="url(#goldGrad)" opacity="0.9"/>
+  <path d="M 50 12 L 78 24 C 78 58 50 82 50 88 C 50 82 22 58 22 24 Z" fill="url(#rubyGrad)" stroke="url(#goldGrad)" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M 50 20 L 71 30 C 71 55 50 74 50 78 C 50 74 29 55 29 30 Z" fill="#20050c" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.85"/>
+  <path d="M 37 46 L 40 33 L 46 39 L 50 28 L 54 39 L 60 33 L 63 46 Z" fill="url(#goldGrad)" stroke="#fff" stroke-width="0.8"/>
+  <circle cx="50" cy="28" r="1.8" fill="#fff" />
+  <circle cx="40" cy="33" r="1.4" fill="#ff4d6d" />
+  <circle cx="60" cy="33" r="1.4" fill="#ff4d6d" />
+  <polygon points="50,50 52,56 58,56 53,60 55,66 50,62 45,66 47,60 42,56 48,56" fill="url(#goldGrad)" />
+  <rect x="26" y="70" width="48" height="12" rx="3" fill="#120205" stroke="url(#goldGrad)" stroke-width="1.2" />
+  <text x="50" y="79" fill="url(#goldGrad)" font-size="7" font-family="sans-serif" font-weight="900" text-anchor="middle" letter-spacing="0.8">OWNER</text>
+</svg>

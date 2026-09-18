@@ -1,0 +1,87 @@
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.welcome-banner {
+  position: fixed;
+  bottom: 10%;
+  right: 20px;
+  width: 300px;
+  height: 100px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #222;
+}
+
+.banner-overlay {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 8px 12px;
+  gap: 10px;
+}
+
+.banner-profile {
+  width: 42px;
+  height: 42px;
+  border-radius: 20%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 🟡 Text with shadow for readability */
+.banner-text h2,
+.banner-text p {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.9),
+               0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.banner-text h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.banner-text p {
+  margin: 2px 0 0;
+  color: #fff;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.thumbnail {
+  position: absolute;
+  bottom: 6px;
+  right: 10px;
+}
+
+.thumbnail span {
+  font-size: 9px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.5px;
+}

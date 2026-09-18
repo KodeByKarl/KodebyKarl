@@ -1,0 +1,28 @@
+<svg width="256" height="256" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vip5Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbcfe8" />
+      <stop offset="35%" stop-color="#ec4899" />
+      <stop offset="70%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#3b0764" />
+    </linearGradient>
+    <linearGradient id="vipGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff" />
+      <stop offset="40%" stop-color="#ffd700" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+  </defs>
+  <path d="M 10 46 C 2 30 16 16 32 20 C 22 30 26 42 34 46 Z" fill="url(#vipGold)" opacity="0.9"/>
+  <path d="M 90 46 C 98 30 84 16 68 20 C 78 30 74 42 66 46 Z" fill="url(#vipGold)" opacity="0.9"/>
+  <path d="M 50 14 L 78 26 C 78 58 50 82 50 88 C 50 82 22 58 22 26 Z" fill="url(#vip5Grad)" stroke="url(#vipGold)" stroke-width="3.5" stroke-linejoin="round"/>
+  <g fill="url(#vipGold)" transform="translate(0, -2)">
+    <polygon points="32,38 33,42 37,42 34,44 35,48 32,46 29,48 30,44 27,42 31,42" />
+    <polygon points="41,33 42,37 46,37 43,39 44,43 41,41 38,43 39,39 36,37 40,37" />
+    <polygon points="50,30 51.5,35 56.5,35 52.5,38 54,43 50,40 46,43 47.5,38 43.5,35 48.5,35" />
+    <polygon points="59,33 60,37 64,37 61,39 62,43 59,41 56,43 57,39 54,37 58,37" />
+    <polygon points="68,38 69,42 73,42 70,44 71,48 68,46 65,48 66,44 63,42 67,42" />
+  </g>
+  <polygon points="50,46 60,54 50,65 40,54" fill="#fff" opacity="0.85" />
+  <rect x="25" y="70" width="50" height="12" rx="3" fill="#18041c" stroke="url(#vipGold)" stroke-width="1.2" />
+  <text x="50" y="79" fill="url(#vipGold)" font-size="7" font-family="sans-serif" font-weight="900" text-anchor="middle" letter-spacing="0.8">VIP 5</text>
+</svg>

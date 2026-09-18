@@ -1,0 +1,1 @@
+-- Exhaust backfire / anti-lag was removed from the mechanic tablet.

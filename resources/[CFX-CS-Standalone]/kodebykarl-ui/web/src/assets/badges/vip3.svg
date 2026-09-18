@@ -1,0 +1,22 @@
+<svg width="256" height="256" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vip3Emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a7f3d0" />
+      <stop offset="40%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="vip3Gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+  </defs>
+  <path d="M 50 14 L 78 26 C 78 58 50 82 50 88 C 50 82 22 58 22 26 Z" fill="#031a12" stroke="url(#vip3Emerald)" stroke-width="3.5" stroke-linejoin="round"/>
+  <g fill="url(#vip3Gold)">
+    <polygon points="38,34 39,39 44,39 40,42 42,47 38,44 34,47 36,42 32,39 37,39" />
+    <polygon points="50,30 51.5,35 56.5,35 52.5,38 54,43 50,40 46,43 47.5,38 43.5,35 48.5,35" />
+    <polygon points="62,34 63,39 68,39 64,42 66,47 62,44 58,47 60,42 56,39 61,39" />
+  </g>
+  <polygon points="50,50 58,58 50,66 42,58" fill="url(#vip3Emerald)" />
+  <rect x="25" y="70" width="50" height="12" rx="3" fill="#02130d" stroke="url(#vip3Emerald)" stroke-width="1.2" />
+  <text x="50" y="79" fill="#34d399" font-size="7" font-family="sans-serif" font-weight="900" text-anchor="middle" letter-spacing="0.8">VIP 3</text>
+</svg>
