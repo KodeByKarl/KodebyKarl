@@ -118,7 +118,9 @@ RegisterNetEvent('cfx-keydi-ambulance:healTarget', function(playerId)
     TriggerClientEvent('cfx-keydi-ambulance:syncHeal', xTarget.source)
     TriggerClientEvent('cfx-keydi-ambulance:client:ResetLimbs', xTarget.source)
     TriggerClientEvent('cfx-keydi-ambulance:client:RemoveBleed', xTarget.source)
-    exports['es_extended']:SecureSetStatus(xTarget.source, { hunger = 100, thirst = 100, stress = 0 })
+    pcall(function()
+        exports['es_extended']:SecureSetStatus(xTarget.source, { hunger = 100, thirst = 100, stress = 0 })
+    end)
 
     if AmbulanceLogs and AmbulanceLogs.Heal then
         local job = xPlayer.job and (('%s — %s'):format(xPlayer.job.label or xPlayer.job.name, xPlayer.job.grade_label or '')) or nil

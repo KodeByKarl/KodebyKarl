@@ -79,3 +79,21 @@ end, true, {
         { name = 'playerId', help = 'Player ID', type = 'player' }
     }
 })
+
+local function secureSetStatus(targetId, newStatus)
+    local xPlayer = ESX.Players[targetId] or (ESX.GetPlayerFromId and ESX.GetPlayerFromId(targetId))
+    if not xPlayer then return false end
+
+    local status = xPlayer.getMeta('status') or { hunger = 100, thirst = 100, stress = 0 }
+    if type(newStatus) == 'table' then
+        if newStatus.hunger ~= nil then status.hunger = clamp(tonumber(newStatus.hunger) or 100, 0, 100) end
+        if newStatus.thirst ~= nil then status.thirst = clamp(tonumber(newStatus.thirst) or 100, 0, 100) end
+        if newStatus.stress ~= nil then status.stress = clamp(tonumber(newStatus.stress) or 0, 0, 100) end
+    end
+
+    xPlayer.setMeta('status', status)
+    TriggerClientEvent('es_extended:status:updateStatus', xPlayer.source, status.hunger, status.thirst, status.stress)
+    return true
+end
+
+exports('SecureSetStatus', secureSetStatus)

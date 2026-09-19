@@ -300,7 +300,9 @@ ESX.RegisterServerCallback('cfx-keydi-ambulance:removeItems', function(source, c
 	else
 		Vars.ox:ClearInventory(xPlayer.source)
 	end
-	exports['es_extended']:SecureSetStatus(xPlayer.source, { hunger = 100, thirst = 100, stress = 0 })
+	pcall(function()
+		exports['es_extended']:SecureSetStatus(xPlayer.source, { hunger = 100, thirst = 100, stress = 0 })
+	end)
 	TriggerClientEvent('cfx-keydi-ambulance:client:ResetLimbs', xPlayer.source)
 	TriggerClientEvent('cfx-keydi-ambulance:client:RemoveBleed', xPlayer.source)
 	grantSpawnProtection(src)
@@ -347,7 +349,9 @@ ESX.RegisterServerCallback('cfx-keydi-ambulance:checkIn', function(source, cb, i
 		TriggerClientEvent('cfx-keydi-ambulance:revive', xPlayer.source)
 		TriggerClientEvent('cfx-keydi-ambulance:client:ResetLimbs', xPlayer.source)
 		TriggerClientEvent('cfx-keydi-ambulance:client:RemoveBleed', xPlayer.source)
-		exports['es_extended']:SecureSetStatus(xPlayer.source, { hunger = 100, thirst = 100, stress = 0 })
+		pcall(function()
+			exports['es_extended']:SecureSetStatus(xPlayer.source, { hunger = 100, thirst = 100, stress = 0 })
+		end)
 		SetTimeout(500, function()
 			if GetResourceState('kodebykarl-ui') == 'started' then
 				pcall(function()
@@ -577,7 +581,9 @@ AddEventHandler('txAdmin:events:healedPlayer', function(eventData)
 		TriggerClientEvent('cfx-keydi-ambulance:revive', eventData.id)
 		TriggerClientEvent('cfx-keydi-ambulance:client:ResetLimbs', eventData.id)
 		TriggerClientEvent('cfx-keydi-ambulance:client:RemoveBleed', eventData.id)
-		exports['es_extended']:SecureSetStatus(eventData.id, { hunger = 100, thirst = 100, stress = 0 })
+		pcall(function()
+			exports['es_extended']:SecureSetStatus(eventData.id, { hunger = 100, thirst = 100, stress = 0 })
+		end)
 		setDeadState(eventData.id, false)
 	end
 end)

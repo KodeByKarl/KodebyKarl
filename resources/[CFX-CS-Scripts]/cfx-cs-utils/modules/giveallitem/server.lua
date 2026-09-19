@@ -133,5 +133,3 @@ end, true, {
         { name = 'count', help = 'Amount per player (default 1)', type = 'number', validate = false },
     },
 })
-
-print('^2[cfx-keydi-utils:giveallitem]^0 /giveallitem registered (owner/developer only, server-side).')

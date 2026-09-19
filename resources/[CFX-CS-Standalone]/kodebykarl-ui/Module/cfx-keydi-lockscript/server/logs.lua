@@ -97,7 +97,6 @@ local function resolveChannels()
 
     discordRequest("GET", ("/guilds/%s/channels"):format(c.GuildID), nil, function(status, channels)
         if status ~= 200 or type(channels) ~= "table" then
-            print(("^3%s^0 Could not list guild channels (HTTP %s)"):format(PREFIX, status))
             return
         end
         local names = c.ChannelNames or {}

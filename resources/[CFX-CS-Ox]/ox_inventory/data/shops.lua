@@ -336,6 +336,25 @@ return {
 		}
 	},
 
+	SpectreAmmu = {
+		name = 'Spectre Ammu',
+		groups = { ['spectreammu'] = 0 },
+		inventory = {
+			{ name = 'WEAPON_DEAGLE', price = 25000 },
+			{ name = 'WEAPON_PISTOL', price = 15000 },
+			{ name = 'WEAPON_MILITARYRIFLE', price = 50000 },
+			{ name = 'ammo-box1', price = 5000 },
+			{ name = 'ammo-box2', price = 7500 },
+			{ name = 'ammo-box3', price = 10000 },
+		},
+		locations = {
+			vec3(-1304.6237, -397.0958, 36.6957),
+		},
+		targets = {
+			{ loc = vec3(-1304.6237, -397.0958, 36.6957), length = 1.0, width = 1.5, heading = 164.9064, minZ = 35.69, maxZ = 38.0, distance = 2.5 },
+		},
+	},
+
 	VendingMachineDrinks = {
 		name = 'Vending Machine',
 		inventory = {

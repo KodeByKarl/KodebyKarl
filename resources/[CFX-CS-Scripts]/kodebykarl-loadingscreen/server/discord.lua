@@ -130,12 +130,10 @@ local function RefreshStaffCache()
     local guildId = Config.Discord and Config.Discord.GuildId
 
     if not token then
-        print('^3[kodebykarl-loadingscreen]^0 Discord bot token missing (convar kodebykarl_discord_bot_token). Staff slider will be empty.')
         return
     end
 
     if not guildId or guildId == '' then
-        print('^3[kodebykarl-loadingscreen]^0 Config.Discord.GuildId is empty. Staff slider will be empty.')
         return
     end
 

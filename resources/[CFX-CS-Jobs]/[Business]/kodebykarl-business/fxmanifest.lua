@@ -1,5 +1,3 @@
-shared_script '@cfx-cs-auth/shared_fg-obfuscated.lua'
-shared_script '@cfx-cs-auth/shared_fg-obfuscated.lua'
 fx_version 'cerulean'
 games {'gta5'}
 name 'kodebykarl-business'

@@ -33,9 +33,7 @@ local queries = {
 
 
 for x = 1, #queries do
-    MySQL.query(queries[x].query, {}, function()
-        lib.print.info(('Initializing Table: %s'):format(queries[x].table))
-    end)
+    MySQL.query(queries[x].query, {})
 end
 
 MySQL.query(("SELECT COUNT(COLUMN_NAME) as count FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s' AND COLUMN_NAME = 'jailtime'"):format(db.table), function(convertNeeded)

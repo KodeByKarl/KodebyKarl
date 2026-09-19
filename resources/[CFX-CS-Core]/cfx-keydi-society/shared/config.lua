@@ -22,7 +22,15 @@ Config.Accounts = {
     { name = 'society_weedshop', label = 'Weed Shop', startingBalance = 0 },
 
     -- Gang societies (kodebykarl-gangsystem)
-    { name = 'society_deuscartel', label = 'DEUS CARTEL', startingBalance = 0 },
+    { name = 'society_deuscartel', label = 'Deus Cartel', startingBalance = 0 },
+    { name = 'society_grimgang', label = 'GrimGang', startingBalance = 0 },
+    { name = 'society_alaskador', label = 'Alaskador', startingBalance = 0 },
+    { name = 'society_westside', label = 'Westside', startingBalance = 0 },
+    { name = 'society_mellysyndicate', label = 'Melly Syndicate', startingBalance = 0 },
+    { name = 'society_npa', label = 'NPA', startingBalance = 0 },
+    { name = 'society_tdc', label = 'Tropa de Calle', startingBalance = 0 },
+    { name = 'society_tbs', label = 'The Boneless', startingBalance = 0 },
+    { name = 'society_ghettosyndicate', label = 'Ghetto Syndicate', startingBalance = 0 },
     { name = 'society_ballas', label = 'Ballas', startingBalance = 0 },
     { name = 'society_families', label = 'Families', startingBalance = 0 },
     { name = 'society_vagos', label = 'Vagos', startingBalance = 0 },
@@ -61,6 +69,14 @@ Config.JobAccounts = {
 
 Config.GangAccounts = {
     deuscartel = 'society_deuscartel',
+    grimgang = 'society_grimgang',
+    alaskador = 'society_alaskador',
+    westside = 'society_westside',
+    mellysyndicate = 'society_mellysyndicate',
+    npa = 'society_npa',
+    tdc = 'society_tdc',
+    tbs = 'society_tbs',
+    ghettosyndicate = 'society_ghettosyndicate',
     ballas = 'society_ballas',
     families = 'society_families',
     vagos = 'society_vagos',

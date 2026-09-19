@@ -40,10 +40,15 @@ function GangServer.IsBoss(src, gangName)
     local cfg = GangServer.GetGangDef(gang.name)
     if not cfg then return false end
     local level = GangServer.GetGradeLevel(gang)
-    for i = 1, #cfg.grades do
-        local g = cfg.grades[i]
-        if g.isboss and tonumber(g.grade) == level then
-            return true
+    if cfg.bossGrade and level >= tonumber(cfg.bossGrade) then
+        return true
+    end
+    if cfg.grades then
+        for i = 1, #cfg.grades do
+            local g = cfg.grades[i]
+            if g.isboss and tonumber(g.grade) == level then
+                return true
+            end
         end
     end
     return false
@@ -55,8 +60,10 @@ function GangServer.GetGangsMap()
         out[name] = {
             name = name,
             label = cfg.label,
-            color = cfg.color,
-            society = cfg.society,
+            color = cfg.rgbColor or cfg.color,
+            society = cfg.society or ('society_%s'):format(name),
+            bossGrade = cfg.bossGrade or 3,
+            discordRoleId = cfg.discordRoleId,
         }
     end
     return out
@@ -67,7 +74,11 @@ function GangServer.SocietyAccount(gangName)
     if cfg and cfg.society then
         return cfg.society
     end
-    return society():AccountForGang(gangName)
+    if society() and society().AccountForGang then
+        local acc = society():AccountForGang(gangName)
+        if acc then return acc end
+    end
+    return ('society_%s'):format(tostring(gangName):lower())
 end
 
 function GangServer.GetFunds(gangName)
@@ -79,17 +90,48 @@ end
 function GangServer.GradeList(gangName)
     local cfg = GangServer.GetGangDef(gangName)
     if not cfg then return {} end
+    if cfg.grades then
+        local out = {}
+        for i = 1, #cfg.grades do
+            local g = cfg.grades[i]
+            out[#out + 1] = {
+                grade = g.grade,
+                name = g.name,
+                label = g.label,
+                isboss = g.isboss == true,
+            }
+        end
+        table.sort(out, function(a, b) return a.grade < b.grade end)
+        return out
+    end
+
+    local esxGang = ESX.Shared and ESX.Shared.Gangs and ESX.Shared.Gangs[gangName]
+    if esxGang and esxGang.grades then
+        local out = {}
+        for gNum, gData in pairs(esxGang.grades) do
+            local n = tonumber(gNum) or 0
+            out[#out + 1] = {
+                grade = n,
+                name = gData.name or ('grade_%d'):format(n),
+                label = gData.name or ('Grade %d'):format(n),
+                isboss = gData.isboss == true or (cfg.bossGrade and n >= cfg.bossGrade),
+            }
+        end
+        table.sort(out, function(a, b) return a.grade < b.grade end)
+        return out
+    end
+
+    local bossGrade = cfg.bossGrade or 3
+    local defaultLabels = { [0] = 'Member', [1] = 'Soldier', [2] = 'Lieutenant', [3] = 'Boss' }
     local out = {}
-    for i = 1, #cfg.grades do
-        local g = cfg.grades[i]
+    for g = 0, bossGrade do
         out[#out + 1] = {
-            grade = g.grade,
-            name = g.name,
-            label = g.label,
-            isboss = g.isboss == true,
+            grade = g,
+            name = (defaultLabels[g] or ('Grade ' .. g)):lower(),
+            label = defaultLabels[g] or ('Grade ' .. g),
+            isboss = g >= bossGrade,
         }
     end
-    table.sort(out, function(a, b) return a.grade < b.grade end)
     return out
 end
 
@@ -353,16 +395,18 @@ end)
 AddEventHandler('onResourceStart', function(resource)
     if resource ~= GetCurrentResourceName() then return end
     for gangName, cfg in pairs(Config.Gangs) do
-        if cfg.society and GetResourceState('cfx-keydi-society') == 'started' then
+        local socName = cfg.society or ('society_%s'):format(gangName)
+        if GetResourceState('cfx-keydi-society') == 'started' then
             pcall(function()
-                society():EnsureAccount(cfg.society, cfg.label)
+                society():EnsureAccount(socName, cfg.label)
             end)
         end
         -- Ensure ESX shared gang exists
         if ESX.Shared and ESX.Shared.Gangs and not ESX.Shared.Gangs[gangName] then
             local grades = {}
-            for i = 1, #cfg.grades do
-                local g = cfg.grades[i]
+            local gradeList = GangServer.GradeList(gangName)
+            for i = 1, #gradeList do
+                local g = gradeList[i]
                 grades[tostring(g.grade)] = {
                     name = g.label,
                     isboss = g.isboss == true,
@@ -376,5 +420,4 @@ AddEventHandler('onResourceStart', function(resource)
             end)
         end
     end
-    print('[kodebykarl-gangsystem] Ready')
 end)

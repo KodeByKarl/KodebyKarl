@@ -11,8 +11,6 @@ _G.__CFX_KEYDI_IPAD_DEPT_LOADED = true
 local ESX = exports['es_extended']:getSharedObject()
 local ox_inventory = exports.ox_inventory
 
-print('^2[cfx-keydi-ipad]^0 Loading dept.lua (boss + MDT callbacks)…')
-
 local HIRE_DISTANCE = 5.0
 local MAX_TRANSFER = 1000000
 
@@ -945,4 +943,3 @@ exports('ResolvePlayerDept', function(src)
     return resolvePlayerDept(ESX.GetPlayerFromId(src))
 end)
 
-print('^2[cfx-keydi-ipad]^0 dept boss/MDT callbacks registered')

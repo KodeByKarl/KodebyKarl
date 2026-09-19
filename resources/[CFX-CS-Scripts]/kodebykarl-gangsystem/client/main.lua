@@ -43,13 +43,18 @@ function Gang.IsBoss(gangName)
         return false
     end
     if gang.isboss then return true end
-    local level = gang.grade and (gang.grade.level or gang.grade) or 0
+    local level = tonumber(gang.grade and (gang.grade.level or gang.grade) or 0) or 0
     local cfg = Config.Gangs[gang.name]
     if not cfg then return false end
-    for i = 1, #cfg.grades do
-        local g = cfg.grades[i]
-        if g.isboss and tonumber(g.grade) == tonumber(level) then
-            return true
+    if cfg.bossGrade and level >= tonumber(cfg.bossGrade) then
+        return true
+    end
+    if cfg.grades then
+        for i = 1, #cfg.grades do
+            local g = cfg.grades[i]
+            if g.isboss and tonumber(g.grade) == level then
+                return true
+            end
         end
     end
     return false

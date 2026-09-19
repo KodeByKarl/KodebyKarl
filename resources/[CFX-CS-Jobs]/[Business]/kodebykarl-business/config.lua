@@ -163,5 +163,22 @@ Config.Business = {
             joblabel = '8-Ball Diner',
             society = 'society_8ball'
         }
+    },
+    [6] = {
+        BusinessName = 'Spectre Ammu',
+        BlipData = {
+            label = '[~r~Business~w~] Spectre Ammu',
+            pos = vec3(-1304.6237, -397.0958, 36.6957),
+            sprite = 110,
+            colour = 1,
+            scale = 0.8
+        },
+        Tray = {},
+        BossAction = {
+            pos = vec3(-1310.1700, -392.5009, 36.6958),
+            setjob = 'spectreammu',
+            joblabel = 'Spectre Ammu',
+            society = 'society_spectreammu'
+        }
     }
 }

@@ -1,5 +1,3 @@
-server_script '@Pandorangani/src/include/server.lua'
-client_script '@Pandorangani/src/include/client.lua'
 ----- FULL FIX BY FXAP SPAIN -----
 ------ Discord: https://discord.gg/Q9Ef8QgwKc -------
 ----- ByPinducaaa -----

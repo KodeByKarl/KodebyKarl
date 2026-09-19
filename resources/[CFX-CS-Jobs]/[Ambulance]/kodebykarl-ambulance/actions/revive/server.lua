@@ -209,7 +209,9 @@ RegisterNetEvent('cfx-keydi-ambulance:reviveTarget', function(playerId)
 	TriggerClientEvent('cfx-keydi-ambulance:client:ResetLimbs', xTarget.source)
 	TriggerClientEvent('cfx-keydi-ambulance:client:RemoveBleed', xTarget.source)
 
-	exports['es_extended']:SecureSetStatus(xTarget.source, { hunger = 100, thirst = 100, stress = 0 })
+	pcall(function()
+		exports['es_extended']:SecureSetStatus(xTarget.source, { hunger = 100, thirst = 100, stress = 0 })
+	end)
 	pcall(function()
 		local xT = ESX.GetPlayerFromId(xTarget.source)
 		if xT and xT.setMeta then

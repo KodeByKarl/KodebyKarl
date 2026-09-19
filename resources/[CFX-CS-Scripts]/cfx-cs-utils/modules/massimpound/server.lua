@@ -515,10 +515,6 @@ CreateThread(function()
     local intervalSec = math.max(60, math.floor((tonumber(auto.IntervalMinutes) or 25) * 60))
     local warns = auto.WarnSeconds or { 60, 30, 10 }
 
-    print(('[massimpound] Auto mass impound enabled — every %s minutes (timer started).'):format(
-        math.floor(intervalSec / 60)
-    ))
-
     while true do
         local nextAt = os.time() + intervalSec
         local warned = {}

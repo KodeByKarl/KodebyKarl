@@ -181,11 +181,14 @@ function CreateExtendedPlayer(playerId, identifier, ssn, group, accounts, invent
     self.avatar = avatar
     self.playtime = playtime
     -- self.donator_level = exports['cfx-cs-utils']:GetPlayerDonatorLevel(identifier)
-    if Config.Multichar then
+    if identifier:find("^char%d+:") then
         local startIndex = identifier:find(":", 1)
-        if startIndex then
-            self.license = ("%s%s"):format(Config.Identifier, identifier:sub(startIndex, identifier:len()))
+        self.license = identifier:sub(startIndex + 1)
+        if not self.license:find(":") then
+            self.license = ("%s:%s"):format(Config.Identifier, self.license)
         end
+    elseif identifier:find(":") then
+        self.license = identifier
     else
         self.license = ("%s:%s"):format(Config.Identifier, identifier)
     end

@@ -26167,7 +26167,7 @@ async function createConnectionPool() {
     });
     const [result] = await dbPool.query("SELECT VERSION() as version");
     dbVersion = `^5[${result[0].version}]`;
-    console.log(`${dbVersion} ^2Database server connection established!^0`);
+    // console.log(`${dbVersion} ^2Database server connection established!^0`);
     if (config.multipleStatements) {
       console.warn(`multipleStatements is enabled. Used incorrectly, this option may cause SQL injection.`);
     }

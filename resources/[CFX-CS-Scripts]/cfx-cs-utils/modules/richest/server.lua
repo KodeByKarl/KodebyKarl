@@ -249,9 +249,7 @@ local function sendWebhook(embed)
 
     PerformHttpRequest(url, function(status, body)
         status = tonumber(status) or 0
-        if status == 204 or status == 200 then
-            print(('^2%s^0 Discord webhook posted (HTTP %s).'):format(PREFIX, status))
-        else
+        if status ~= 204 and status ~= 200 then
             print(('^1%s^0 Discord webhook failed (HTTP %s): %s'):format(PREFIX, status, tostring(body or ''):sub(1, 200)))
         end
     end, 'POST', json.encode({
@@ -323,11 +321,7 @@ local function sendReport(msgType)
             logged = success == true
         end
 
-        if richest then
-            print(('^2%s^0 Richest player: %s (%s).'):format(PREFIX, richest.full_name or 'Unknown', formatMoney(richest.total_money)))
-        else
-            print(('^3%s^0 No players found for richest report.'):format(PREFIX))
-        end
+
     end)
 
     if not ok then
@@ -345,8 +339,6 @@ CreateThread(function()
         sendReport(Config.LogMessageType)
     end, true, { help = 'Send richest player log to Discord' })
 
-    print(('^2%s^0 Ready. Admin command: /%s'):format(PREFIX, cmd))
-
     if Config.SendOnStart ~= false then
         sendReport(Config.LogMessageType)
     end
@@ -355,7 +347,6 @@ CreateThread(function()
     if not auto or auto.enable == false then return end
 
     local minutes = math.max(1, tonumber(auto.time) or 60)
-    print(('^2%s^0 Auto-report every %d minute(s).'):format(PREFIX, minutes))
 
     while true do
         Wait(minutes * 60 * 1000)

@@ -409,7 +409,13 @@ function ESX.GetIdentifier(playerId)
 
     assert(identifier, ("[ESX] GetIdentifier failed: no identifier found for playerId %s with type '%s'"):format(playerId, identifierType))
 
-    return identifier:gsub(("%s:"):format(identifierType), "")
+    local rawIdentifier = identifier:gsub(("%s:"):format(identifierType), "")
+
+    if Config.Multichar then
+        return ("%s:%s"):format(identifierType, rawIdentifier)
+    end
+
+    return ("char1:%s:%s"):format(identifierType, rawIdentifier)
 end
 
 ---@param model string|number

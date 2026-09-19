@@ -177,5 +177,3 @@ end, true, {
         { name = 'carmodel', help = 'Vehicle spawn name (e.g. sultan)', type = 'any' },
     },
 })
-
-print('^2[cfx-keydi-utils:givecar]^0 /givecar registered (owner/developer/superadmin).')

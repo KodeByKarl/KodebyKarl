@@ -337,7 +337,6 @@ CreateThread(function()
     EnsureTables()
     SeedAccounts()
     LoadCache()
-    print('[cfx-keydi-society] Ready — society funds stored in database')
 end)
 
 ---@param src number

@@ -1,5 +1,3 @@
-server_script '@Pandorangani/src/include/server.lua'
-client_script '@Pandorangani/src/include/client.lua'
 -- shared_script '@cfx-keydi-sentry/modules/secure/shared.lua'
 -- Developed by clxsx999 - C-Scripts --
 fx_version "cerulean"

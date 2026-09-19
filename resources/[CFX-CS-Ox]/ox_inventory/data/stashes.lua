@@ -226,4 +226,61 @@ return {
 		weight = 300000,
 		groups = { ['sambulance'] = 0 }
 	},
+
+	{
+		coords = vec3(-1311.1005, -395.7767, 36.6958),
+		target = {
+			loc = vec3(-1311.1005, -395.7767, 36.6958),
+			length = 1.0,
+			width = 1.8,
+			heading = 164.1777,
+			minZ = 35.6,
+			maxZ = 38.0,
+			label = 'Open personal stash'
+		},
+		name = 'spectreammu_personal',
+		label = 'Personal Stash',
+		owner = true,
+		slots = 70,
+		weight = 10000000,
+		groups = { ['spectreammu'] = 0 }
+	},
+
+	{
+		coords = vec3(-1311.1005, -395.7767, 36.6958),
+		target = {
+			loc = vec3(-1311.1005, -395.7767, 36.6958),
+			length = 1.0,
+			width = 1.8,
+			heading = 164.1777,
+			minZ = 35.6,
+			maxZ = 38.0,
+			label = 'Open public stash'
+		},
+		name = 'spectreammu_public',
+		label = 'Public Stash',
+		owner = false,
+		slots = 150,
+		weight = 5000000,
+		groups = { ['spectreammu'] = 0 }
+	},
+
+	{
+		coords = vec3(-1310.1700, -392.5009, 36.6958),
+		target = {
+			loc = vec3(-1310.1700, -392.5009, 36.6958),
+			length = 1.0,
+			width = 1.5,
+			heading = 270.5552,
+			minZ = 35.6,
+			maxZ = 38.0,
+			label = 'Open boss stash'
+		},
+		name = 'spectreammu_boss',
+		label = 'Boss Stash',
+		owner = false,
+		slots = 100,
+		weight = 5000000,
+		groups = { ['spectreammu'] = 3 }
+	},
 }

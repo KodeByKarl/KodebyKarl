@@ -175,11 +175,4 @@ function PoliceLogs.Action(data)
     })
 end
 
-CreateThread(function()
-    Wait(2000)
-    if isEnabled() then
-        print(('^2%s^0 Using kodebykarl-logs → POLICE channels.'):format(PREFIX))
-    else
-        print(('^3%s^0 Disabled or kodebykarl-logs not started.'):format(PREFIX))
-    end
-end)
+

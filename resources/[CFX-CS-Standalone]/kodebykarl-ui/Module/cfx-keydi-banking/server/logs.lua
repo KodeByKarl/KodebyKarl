@@ -370,11 +370,8 @@ end)
 CreateThread(function()
     Wait(2000)
     if not isEnabled() then
-        print(('^3%s^0 Disabled or kodebykarl-logs not started.'):format(PREFIX))
         return
     end
-
-    print(('^2%s^0 Using kodebykarl-logs → ECONOMY channels.'):format(PREFIX))
 
     local rc = richestCfg()
     if not rc or not rc.Enabled then
@@ -383,7 +380,6 @@ CreateThread(function()
 
     local minutes = tonumber(rc.IntervalMinutes) or 30
     local interval = math.max(1, minutes) * 60 * 1000
-    print(('^2%s^0 Richest report every %d minute(s).'):format(PREFIX, minutes))
 
     while true do
         Wait(interval)
@@ -394,11 +390,10 @@ end)
 CreateThread(function()
     Wait(2500)
     local rc = richestCfg()
-    if not rc or not rc.AdminCommand or rc.AdminCommand == '' then return end
+    if not rc or not rc.Enabled or not rc.AdminCommand or rc.AdminCommand == '' then return end
 
     local cmd = rc.AdminCommand
     ESX.RegisterCommand(cmd, 'admin', function()
         BankingLogs.SendRichest(rc.LogMessageType)
-        print(('^2%s^0 Manual richest report sent via /%s'):format(PREFIX, cmd))
     end, true, { help = 'Send top richest players log to Discord' })
 end)

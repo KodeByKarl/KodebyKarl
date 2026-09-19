@@ -9,6 +9,7 @@ resources/\[CFX-CS-Maps\]/
 # FXServer runtime & cache
 cache/
 files/
+db/
 crashometry/
 .replxx_history
 imgui.ini
@@ -25,3 +26,11 @@ pnpm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# Scully Emote Menu & Archives
+resources/[CFX-CS-Standalone]/scully_emotemenu/
+resources/\[CFX-CS-Standalone\]/scully_emotemenu/
+scully_emotemenu/
+scully_emotemenu.7z
+*.7z
+

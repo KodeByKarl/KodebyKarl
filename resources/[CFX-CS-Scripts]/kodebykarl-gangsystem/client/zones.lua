@@ -11,7 +11,17 @@ local activeId = nil
 local textVisible = false
 
 local function stashId(gangName, kind)
-    if kind == 'share' then
+    local cfg = Config.Gangs[gangName]
+    if cfg and cfg.stashes then
+        if (kind == 'share' or kind == 'public') and cfg.stashes.public and cfg.stashes.public.id then
+            return cfg.stashes.public.id
+        elseif kind == 'boss' and cfg.stashes.boss and cfg.stashes.boss.id then
+            return cfg.stashes.boss.id
+        elseif kind == 'private' and cfg.stashes.private and cfg.stashes.private.id then
+            return cfg.stashes.private.id
+        end
+    end
+    if kind == 'share' or kind == 'public' then
         return ('gang_%s_share'):format(gangName)
     elseif kind == 'boss' then
         return ('gang_%s_boss'):format(gangName)
@@ -58,20 +68,26 @@ local function openGunCrafting(gangName, locationId)
 end
 
 local function setupBlip(gangName, cfg)
-    if not cfg.blip or not cfg.blip.enabled then return end
-    local loc = cfg.locations and (cfg.locations.pressE or cfg.locations.shareStash)
+    local blipCfg = cfg.blip
+    if blipCfg and blipCfg.enabled == false then return end
+
+    local loc = (cfg.stashes and cfg.stashes.public and cfg.stashes.public.coords)
+        or (cfg.locations and (cfg.locations.pressE or cfg.locations.shareStash))
+        or (cfg.wardrobe and cfg.wardrobe.coords)
+        or (cfg.crafting and cfg.crafting.coords)
+        or (cfg.bossMenu and cfg.bossMenu.coords)
     if not loc then return end
 
     local blip = AddBlipForCoord(loc.x, loc.y, loc.z)
-    SetBlipSprite(blip, cfg.blip.sprite or 84)
-    SetBlipColour(blip, cfg.blip.colour or 21)
-    SetBlipScale(blip, cfg.blip.scale or 0.5)
+    SetBlipSprite(blip, (blipCfg and blipCfg.sprite) or 84)
+    SetBlipColour(blip, (blipCfg and blipCfg.colour) or cfg.primaryColor or 21)
+    SetBlipScale(blip, (blipCfg and blipCfg.scale) or 0.5)
     SetBlipAsShortRange(blip, true)
     SetBlipDisplay(blip, 4)
     SetBlipHighDetail(blip, true)
     SetBlipCategory(blip, 1)
     BeginTextCommandSetBlipName('STRING')
-    AddTextComponentSubstringPlayerName(cfg.blip.label or cfg.label)
+    AddTextComponentSubstringPlayerName((blipCfg and blipCfg.label) or cfg.label)
     EndTextCommandSetBlipName(blip)
 end
 
@@ -108,9 +124,7 @@ local function registerPoint(opts)
 end
 
 local function setupGangZones(gangName, cfg)
-    local loc = cfg.locations
-    if not loc then return end
-    local color = cfg.color or { r = 139, g = 90, b = 43 }
+    local color = cfg.rgbColor or cfg.color or { r = 139, g = 90, b = 43 }
 
     local function memberOnly()
         return Gang.IsInGang(gangName)
@@ -120,11 +134,14 @@ local function setupGangZones(gangName, cfg)
         return Gang.IsBoss(gangName)
     end
 
-    if loc.bossStash then
+    -- Boss Stash
+    local bossStashCoords = (cfg.stashes and cfg.stashes.boss and cfg.stashes.boss.coords)
+        or (cfg.locations and cfg.locations.bossStash)
+    if bossStashCoords then
         registerPoint({
             id = ('gang_%s_boss_stash'):format(gangName),
-            coords = loc.bossStash,
-            label = 'Boss Stash',
+            coords = bossStashCoords,
+            label = (cfg.stashes and cfg.stashes.boss and cfg.stashes.boss.label) or 'Boss Stash',
             icon = 'lock',
             color = color,
             canUse = bossOnly,
@@ -132,11 +149,14 @@ local function setupGangZones(gangName, cfg)
         })
     end
 
-    if loc.shareStash then
+    -- Shared / Public Stash
+    local shareStashCoords = (cfg.stashes and cfg.stashes.public and cfg.stashes.public.coords)
+        or (cfg.locations and cfg.locations.shareStash)
+    if shareStashCoords then
         registerPoint({
             id = ('gang_%s_share_stash'):format(gangName),
-            coords = loc.shareStash,
-            label = 'Shared Stash',
+            coords = shareStashCoords,
+            label = (cfg.stashes and cfg.stashes.public and cfg.stashes.public.label) or 'Public Stash',
             icon = 'box-open',
             color = color,
             canUse = memberOnly,
@@ -144,11 +164,14 @@ local function setupGangZones(gangName, cfg)
         })
     end
 
-    if loc.privateStash then
+    -- Private Stash
+    local privateStashCoords = (cfg.stashes and cfg.stashes.private and cfg.stashes.private.coords)
+        or (cfg.locations and cfg.locations.privateStash)
+    if privateStashCoords then
         registerPoint({
             id = ('gang_%s_private_stash'):format(gangName),
-            coords = loc.privateStash,
-            label = 'Private Stash',
+            coords = privateStashCoords,
+            label = (cfg.stashes and cfg.stashes.private and cfg.stashes.private.label) or 'Private Stash',
             icon = 'box',
             color = color,
             canUse = memberOnly,
@@ -156,11 +179,14 @@ local function setupGangZones(gangName, cfg)
         })
     end
 
-    if loc.clothing then
+    -- Clothing / Wardrobe
+    local clothingCoords = (cfg.wardrobe and cfg.wardrobe.coords)
+        or (cfg.locations and cfg.locations.clothing)
+    if clothingCoords then
         registerPoint({
             id = ('gang_%s_clothing'):format(gangName),
-            coords = loc.clothing,
-            label = 'Clothing',
+            coords = clothingCoords,
+            label = 'Wardrobe',
             icon = 'shirt',
             color = color,
             canUse = memberOnly,
@@ -168,15 +194,32 @@ local function setupGangZones(gangName, cfg)
         })
     end
 
-    if loc.gunCrafting then
+    -- Gun Crafting
+    local craftingCoords = (cfg.crafting and cfg.crafting.coords)
+        or (cfg.locations and cfg.locations.gunCrafting)
+    if craftingCoords then
         registerPoint({
             id = ('gang_%s_guncraft'):format(gangName),
-            coords = loc.gunCrafting,
+            coords = craftingCoords,
             label = 'Gun Crafting',
             icon = 'gun',
             color = color,
             canUse = memberOnly,
             onSelect = function() openGunCrafting(gangName, ('gang_%s'):format(gangName)) end,
+        })
+    end
+
+    -- Boss Menu marker (if configured)
+    local bossMenuCoords = (cfg.bossMenu and cfg.bossMenu.coords)
+    if bossMenuCoords then
+        registerPoint({
+            id = ('gang_%s_bossmenu'):format(gangName),
+            coords = bossMenuCoords,
+            label = 'Boss Menu',
+            icon = 'user-tie',
+            color = color,
+            canUse = bossOnly,
+            onSelect = function() ExecuteCommand('gangmenu') end,
         })
     end
 end

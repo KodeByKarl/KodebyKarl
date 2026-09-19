@@ -596,6 +596,11 @@ Config.Wardrobe = {
         coords = vec3(-438.895, 6011.371, 36.995),
         distance = {marker = 4.0, interact = 0.5}
     },
+    {
+        access = {['spectreammu'] = 0},
+        coords = vec3(-1313.5526, -394.7592, 36.6959),
+        distance = {marker = 4.0, interact = 0.5}
+    },
 }
 
 
